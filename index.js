@@ -36,12 +36,12 @@ class ServerlessPlugin {
 
   // syncs the `app` directory to the provided bucket
   syncDirectory() {
-    const localWebsiteDestination = this.serverless.variables.service.custom.localWebsiteDestination;
+    const buildDir = this.serverless.variables.service.custom.buildDir;
     const s3Bucket = this.serverless.variables.service.custom.s3Bucket;
     const args = [
       's3',
       'sync',
-      localWebsiteDestination,
+      buildDir,
       `s3://${s3Bucket}/`,
     ];
     const result = spawnSync('aws', args);
